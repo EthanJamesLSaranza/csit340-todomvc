@@ -16,6 +16,15 @@ function handleSubmit(e) {
   setTodos([...todos, newTodo])
   setText('')
 }
+ 
+function handleToggle(id) {
+  setTodos(
+    todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    )
+  )
+}
+
   return (
     <section className="mx-auto max-w-137.5">
         <h1 className="text-center text-[80px] font-extralight text-[#b83f45]">
@@ -48,6 +57,8 @@ function handleSubmit(e) {
               >
                   <input
                     type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleToggle(todo.id)}
                     className="ml-3.75 size-7.5 shrink-0 cursor-pointer accent-[#59a193]"
                   />
                   <span
