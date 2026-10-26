@@ -24,6 +24,10 @@ function handleToggle(id) {
     )
   )
 }
+ 
+function handleDelete(id) {
+  setTodos(todos.filter((todo) => todo.id !== id))
+}
 
   return (
     <section className="mx-auto max-w-137.5">
@@ -72,6 +76,7 @@ function handleToggle(id) {
                   </span>
                   <button
                     type="button"
+                    onClick={() => handleDelete(todo.id)}
                     className="absolute right-2.5 hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
                   >
                     ×
