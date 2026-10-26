@@ -1,4 +1,11 @@
+import { useState } from 'react'
+
 function Todos() {
+  const [todos] = useState([
+    { id: 1, text: 'Learn the spread operator', completed: false },
+    { id: 2, text: 'Set up Tailwind', completed: true },
+  ])
+ 
   return (
     <section className="mx-auto max-w-137.5">
         <h1 className="text-center text-[80px] font-extralight text-[#b83f45]">
@@ -22,13 +29,23 @@ function Todos() {
               </label>
 
               <ul>
-                <li className="group relative flex items-center border-b border-[#ededed] text-2xl">
+                {todos.map((todo) => (
+              <li
+                key={todo.id}
+                className="group relative flex items-center border-b border-[#ededed] text-2xl"
+              >
                   <input
                     type="checkbox"
                     className="ml-3.75 size-7.5 shrink-0 cursor-pointer accent-[#59a193]"
                   />
-                  <span className="flex-1 py-3.75 pr-15 pl-3.75 break-all">
-                    Learn the spread operator
+                  <span
+                  className={
+                    todo.completed
+                      ? 'flex-1 py-3.75 pr-15 pl-3.75 break-all text-[#949494] line-through'
+                      : 'flex-1 py-3.75 pr-15 pl-3.75 break-all'
+                  }
+                >
+                  {todo.text}
                   </span>
                   <button
                     type="button"
@@ -37,24 +54,7 @@ function Todos() {
                     ×
                   </button>
                 </li>
-
-                <li className="group relative flex items-center border-b border-[#ededed] text-2xl">
-                  <input
-                    type="checkbox"
-                    checked
-                    readOnly
-                    className="ml-3.75 size-7.5 shrink-0 cursor-pointer accent-[#59a193]"
-                  />
-                  <span className="flex-1 py-3.75 pr-15 pl-3.75 break-all text-[#949494] line-through">
-                    Set up Tailwind
-                  </span>
-                  <button
-                    type="button"
-                    className="absolute right-2.5 hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
-                  >
-                    ×
-                  </button>
-                </li>
+              ))}
               </ul>
           </main>
             <footer className="grid h-10 grid-cols-3 items-center border-t border-[#e6e6e6] px-3.75 text-[15px]">
